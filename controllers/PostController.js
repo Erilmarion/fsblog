@@ -53,25 +53,25 @@ export const getOne = async (req, res) => {
 
 export const remove = async (req, res) => {
 	try {
-		const postId = req.param.id;
-		console.log('postId:',req.param);
+		const postId = req.params.id;
 		PostModel.findOneAndDelete({
-			_id:postId,
-								   },(err,doc)=>{
-			if(err){
+									   _id: postId,
+								   }, (err, doc) => {
+			if (err) {
 				console.log('e:', err);
-			return 	res.status(500).json({
-										 message: 'Не удалось удалить статьи'
-									 });
+				return res.status(500).json({
+												message: 'Не удалось удалить статьи'
+											});
 			}
-			console.log('doc',doc);
-			if (!doc){
+
+			if (!doc) {
 				return res.status(404).json({
-					message:'Статья не найдена'
-											})
-			};
+												message: 'Статья не найдена'
+											});
+			}
+			;
 			res.json({
-				message:'success'
+						 message: 'success'
 					 });
 		});
 	}
@@ -101,6 +101,30 @@ export const create = async (req, res) => {
 		console.log('e:', e);
 		res.status(500).json({
 								 message: 'Не удалось создать пост'
+							 });
+	}
+};
+
+export const update = async (req, res) => {
+	try {
+		const postId = req.params.id;
+		await PostModel.updateOne({
+									  _id: postId,
+								  },{
+			title:req.body.title,
+			text:req.body.text,
+			imageUrl:req.body.imageUrl,
+			user:req.userId,
+			tags:req.body.tags,
+		});
+		res.json({
+			success:true
+				 });
+	}
+	catch(e) {
+		console.log('e:', e);
+		res.status(500).json({
+								 message: 'Не удалось обновить пост'
 							 });
 	}
 };
