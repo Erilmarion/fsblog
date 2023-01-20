@@ -1,0 +1,21 @@
+{
+  "name": "fsblog",
+  "version": "1.0.0",
+  "description": "blog react ",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev":"nodemon index.js"
+  },
+  "keywords": [
+    "blog",
+    "react"
+  ],
+  "author": "Alex B <erilmarion@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20"
+  }
+}
