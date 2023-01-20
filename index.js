@@ -27,7 +27,7 @@ app.post('/auth/register', registerValidation, UserController.register)
 app.get('/posts',  PostController.getAll);
 app.get('/posts/:id',  PostController.getOne);
 app.post('/posts',checkAuth,postCreateValidation,  PostController.create);
-// app.post('/posts',  PostController.remove);
+app.delete('/posts/:id',checkAuth,  PostController.remove);
 // app.path('/posts',  PostController.update);
 
 
